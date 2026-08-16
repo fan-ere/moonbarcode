@@ -1,0 +1,87 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "fan-ere/moonbarcode"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn checksum(Symbology, String) -> Result[Int, EncodeError]
+
+pub fn encode(Symbology, String) -> Result[Barcode, EncodeError]
+
+pub fn encode_ean13(String) -> Result[Barcode, EncodeError]
+
+pub fn encode_ean8(String) -> Result[Barcode, EncodeError]
+
+pub fn encode_upca(String) -> Result[Barcode, EncodeError]
+
+pub fn error_message(EncodeError) -> String
+
+pub fn gtin14_checksum(String) -> Result[Int, String]
+
+pub fn gtin14_valid(String) -> Bool
+
+pub fn is_all_digits(String) -> Bool
+
+pub fn is_valid(Symbology, String) -> Bool
+
+pub fn isbn10_valid(String) -> Bool
+
+pub fn isbn13_valid(String) -> Bool
+
+pub fn issn_valid(String) -> Bool
+
+pub fn mod10_check(String, Int, Int) -> Result[Int, String]
+
+pub fn mod10_verify(String, Int, Int) -> Bool
+
+pub fn render_ansi(Barcode, BarcodeOptions) -> String
+
+pub fn render_ascii(Barcode, BarcodeOptions) -> String
+
+pub fn render_svg(Barcode, BarcodeOptions) -> String
+
+pub fn strip_separators(String) -> String
+
+pub fn validate(Symbology, String) -> Result[Unit, EncodeError]
+
+// Errors
+
+// Types and methods
+pub struct Barcode {
+  symbology : Symbology
+  data : String
+  modules : Array[Bool]
+}
+pub fn Barcode::bar_count(Self) -> Int
+pub fn Barcode::module_count(Self) -> Int
+
+pub struct BarcodeOptions {
+  module_width : Int
+  height : Int
+  quiet_zone : Int
+  show_text : Bool
+  text_margin : Int
+}
+pub fn BarcodeOptions::default() -> Self
+pub fn BarcodeOptions::new(module_width? : Int, height? : Int, quiet_zone? : Int, show_text? : Bool, text_margin? : Int) -> Self
+
+pub(all) enum EncodeError {
+  InvalidData(String)
+  Unsupported(String)
+} derive(Eq, @debug.Debug)
+
+pub(all) enum Symbology {
+  EAN13
+  EAN8
+  UPCA
+  Code39
+  Code93
+  Code128
+  ITF14
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits

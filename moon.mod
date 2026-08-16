@@ -36,3 +36,7 @@ keywords = [
 preferred_target = "wasm"
 
 description = "纯 MoonBit 原生的一维条码（1D barcode）生成、校验与渲染工具库：EAN-13 / EAN-8 / UPC-A / Code 39 / Code 93 / Code 128 / ITF-14 编码、ISBN / ISSN / GTIN 校验、SVG / ASCII / ANSI 渲染，可编译为 native / wasm / wasm-gc / js 多后端。"
+
+import {
+  "moonbitlang/async@0.20.5",
+}

@@ -34,6 +34,8 @@ test "validate and is_valid" {
   }
   assert_eq(@moonbarcode.is_valid(@moonbarcode.EAN13, "4006381333931"), true)
   assert_eq(@moonbarcode.is_valid(@moonbarcode.EAN13, "4006381333930"), false)
+  // validate 要求完整形式（含校验位）。
+  assert_eq(@moonbarcode.is_valid(@moonbarcode.EAN13, "400638133393"), false)
 }
 
 ///|

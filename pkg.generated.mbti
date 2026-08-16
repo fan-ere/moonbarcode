@@ -8,11 +8,15 @@ import {
 // Values
 pub fn checksum(Symbology, String) -> Result[Int, EncodeError]
 
+pub fn code128_checksum(String, gs1? : Bool) -> Result[Int, String]
+
 pub fn code39_checksum(String) -> Result[Int, String]
 
 pub fn code93_checksums(String, full_ascii? : Bool) -> Result[(Int, Int), String]
 
 pub fn encode(Symbology, String) -> Result[Barcode, EncodeError]
+
+pub fn encode_code128(String, gs1? : Bool) -> Result[Barcode, EncodeError]
 
 pub fn encode_code39(String, with_checksum? : Bool) -> Result[Barcode, EncodeError]
 
@@ -53,6 +57,8 @@ pub fn render_svg(Barcode, BarcodeOptions) -> String
 pub fn strip_separators(String) -> String
 
 pub fn validate(Symbology, String) -> Result[Unit, EncodeError]
+
+pub fn validate_code128(String, gs1? : Bool) -> Result[Unit, EncodeError]
 
 pub fn validate_code39(String) -> Result[Unit, EncodeError]
 

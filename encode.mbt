@@ -13,7 +13,7 @@ pub fn encode(
     UPCA => encode_upca(data)
     Code39 => encode_code39(data)
     Code93 => encode_code93(data)
-    Code128 => Err(Unsupported("Code 128 is planned but not implemented yet"))
+    Code128 => encode_code128(data)
     ITF14 => Err(Unsupported("ITF-14 is planned but not implemented yet"))
   }
 }
@@ -78,6 +78,10 @@ pub fn checksum(
           "Code 93 has two check characters; use code93_checksums instead",
         ),
       )
-    Code128 => Err(Unsupported("Code 128 is planned but not implemented yet"))
+    Code128 =>
+      match code128_checksum(d) {
+        Err(msg) => Err(InvalidData(msg))
+        Ok(c) => Ok(c)
+      }
   }
 }

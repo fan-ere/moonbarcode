@@ -10,9 +10,9 @@
 
 ## 支持的符号体系（Symbologies）
 
-- 零售：EAN-13、EAN-8、UPC-A（UPC-E 规划中）
-- 图书与出版物：ISBN-10 / ISBN-13、ISSN、ISMN、GTIN-14 校验
-- 物流与工业：ITF-14、Code 39、Code 93、Code 128（含 GS1-128）
+- 零售：EAN-13、EAN-8、UPC-A
+- 物流与工业：Code 39（含 mod-43 校验）、Code 93（C/K 双校验 + Full ASCII）、Code 128（A/B/C 子集自动优化 + GS1-128）
+- 图书与出版物校验：ISBN-10 / ISBN-13、ISSN、GTIN-14
 
 ## 渲染
 
@@ -41,10 +41,11 @@ let barcode = @moonbarcode.encode(@moonbarcode.EAN13, "6901234567892")
 ## 开发状态
 
 - [x] 项目脚手架、CI、许可证
-- [ ] MVP：EAN-13 / UPC-A / EAN-8 编码 + ISBN/ISSN 校验 + SVG/ASCII 渲染 + CLI
-- [ ] Code 39 / Code 93
-- [ ] Code 128 / GS1-128
-- [ ] ITF-14
+- [x] EAN-13 / UPC-A / EAN-8 编码 + ISBN/ISSN/GTIN 校验 + SVG/ASCII/ANSI 渲染 + CLI
+- [x] Code 39（mod-43 校验）
+- [x] Code 93（C/K 校验 + Full ASCII）
+- [x] Code 128 / GS1-128
+- [ ] ITF-14（校验函数已提供，编码器规划中）
 - [ ] UPC-E 与补充码（+2 / +5）
 
 ## 许可证

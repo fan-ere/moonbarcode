@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [native, wasm-gc, js]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Update registry
+        run: |
+          moon version
+          moon update
+      - name: Format
+        run: moon fmt --check .
+      - name: Check
+        run: moon check --target ${{ matrix.target }}
+      - name: Test
+        run: moon test --target ${{ matrix.target }}
+      - name: Build library
+        run: moon build --target ${{ matrix.target }}
+      - name: CLI smoke test (native)
+        if: matrix.target == 'native'
+        run: |
+          moon run cmd/main --target native -- encode --type ean13 --data 6901234567892 --format ascii
+          moon run cmd/main --target native -- validate --type isbn13 --data 978-0-306-40615-7
+          moon run cmd/main --target native -- list

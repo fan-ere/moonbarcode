@@ -102,56 +102,54 @@ async fn run_encode(args : Array[String]) -> Unit {
 
 ///|
 struct EncodeOpts {
-  var sym : String
-  var data : String
-  var format : String
-  var out_path : String
-  var height : Int
-  var module_width : Int
-  var quiet_zone : Int
-  var show_text : Bool
+  sym : String
+  data : String
+  format : String
+  out_path : String
+  height : Int
+  module_width : Int
+  quiet_zone : Int
+  show_text : Bool
 }
 
 ///|
 fn parse_encode_args(args : Array[String]) -> EncodeOpts {
-  let opts : EncodeOpts = {
-    sym: "",
-    data: "",
-    format: "svg",
-    out_path: "",
-    height: 40,
-    module_width: 2,
-    quiet_zone: 10,
-    show_text: true,
-  }
+  let mut sym = ""
+  let mut data = ""
+  let mut format = "svg"
+  let mut out_path = ""
+  let mut height = 40
+  let mut module_width = 2
+  let mut quiet_zone = 10
+  let mut show_text = true
   let mut i = 2
   while i < args.length() {
     let a = args[i]
     if a == "--type" || a == "-t" {
       i = i + 1
       if i < args.length() {
-        opts.sym = args[i]
+        sym = args[i]
       }
     } else if a == "--data" || a == "-d" {
       i = i + 1
       if i < args.length() {
-        opts.data = args[i]
+        data = args[i]
       }
     } else if a == "--format" || a == "-f" {
       i = i + 1
       if i < args.length() {
-        opts.format = args[i]
+        format = args[i]
       }
     } else if a == "--out" || a == "-o" {
       i = i + 1
       if i < args.length() {
-        opts.out_path = args[i]
+        out_path = args[i]
       }
     } else if a == "--height" {
       i = i + 1
       if i < args.length() {
         match parse_int(args[i]) {
-          Some(v) => opts.height = v
+          Some(v) => height = v
           None => ()
         }
       }
@@ -159,7 +157,7 @@ fn parse_encode_args(args : Array[String]) -> EncodeOpts {
       i = i + 1
       if i < args.length() {
         match parse_int(args[i]) {
-          Some(v) => opts.module_width = v
+          Some(v) => module_width = v
           None => ()
         }
       }
@@ -167,16 +165,16 @@ fn parse_encode_args(args : Array[String]) -> EncodeOpts {
       i = i + 1
       if i < args.length() {
         match parse_int(args[i]) {
-          Some(v) => opts.quiet_zone = v
+          Some(v) => quiet_zone = v
           None => ()
         }
       }
     } else if a == "--no-text" {
-      opts.show_text = false
+      show_text = false
     }
     i = i + 1
   }
-  opts
+  { sym, data, format, out_path, height, module_width, quiet_zone, show_text }
 }
 
 ///|

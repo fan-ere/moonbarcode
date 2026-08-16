@@ -20,10 +20,6 @@ test "not yet implemented symbologies return unsupported" {
     Err(@moonbarcode.Unsupported(_)) => assert_true(true)
     _ => assert_true(false)
   }
-  match @moonbarcode.encode(@moonbarcode.Code93, "ABC") {
-    Err(@moonbarcode.Unsupported(_)) => assert_true(true)
-    _ => assert_true(false)
-  }
 }
 
 ///|

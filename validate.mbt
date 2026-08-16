@@ -42,7 +42,7 @@ pub fn validate(
         Ok(())
       }
     Code39 => validate_code39(data)
-    Code93 => Err(Unsupported("Code 93 is planned but not implemented yet"))
+    Code93 => validate_code93(data)
     Code128 => Err(Unsupported("Code 128 is planned but not implemented yet"))
   }
 }

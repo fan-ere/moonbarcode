@@ -11,7 +11,7 @@ pub fn encode(
     EAN13 => encode_ean13(data)
     EAN8 => encode_ean8(data)
     UPCA => encode_upca(data)
-    Code39 => Err(Unsupported("Code 39 is planned but not implemented yet"))
+    Code39 => encode_code39(data)
     Code93 => Err(Unsupported("Code 93 is planned but not implemented yet"))
     Code128 => Err(Unsupported("Code 128 is planned but not implemented yet"))
     ITF14 => Err(Unsupported("ITF-14 is planned but not implemented yet"))
@@ -67,7 +67,11 @@ pub fn checksum(
           Ok(c) => Ok(c)
         }
       }
-    Code39 => Err(Unsupported("Code 39 is planned but not implemented yet"))
+    Code39 =>
+      match code39_checksum(d) {
+        Err(msg) => Err(InvalidData(msg))
+        Ok(c) => Ok(c)
+      }
     Code93 => Err(Unsupported("Code 93 is planned but not implemented yet"))
     Code128 => Err(Unsupported("Code 128 is planned but not implemented yet"))
   }

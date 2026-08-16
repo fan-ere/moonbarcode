@@ -33,9 +33,9 @@ test "parse_int handles signs and junk" {
 ///|
 test "parse_encode_args extracts options" {
   let args = [
-    "moonbarcode", "encode", "--type", "ean13", "--data", "400638133393",
-    "--format", "ascii", "--out", "x.txt", "--height", "60",
-    "--module-width", "3", "--quiet-zone", "12", "--no-text",
+    "moonbarcode", "encode", "--type", "ean13", "--data", "400638133393", "--format",
+    "ascii", "--out", "x.txt", "--height", "60", "--module-width", "3", "--quiet-zone",
+    "12", "--no-text",
   ]
   let opts = parse_encode_args(args)
   assert_eq(opts.sym, "ean13")

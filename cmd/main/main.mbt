@@ -221,8 +221,7 @@ fn run_validate(args : Array[String]) -> Unit {
       println(if @lib.isbn10_valid(data) { "VALID" } else { "INVALID" })
     "isbn13" =>
       println(if @lib.isbn13_valid(data) { "VALID" } else { "INVALID" })
-    "issn" =>
-      println(if @lib.issn_valid(data) { "VALID" } else { "INVALID" })
+    "issn" => println(if @lib.issn_valid(data) { "VALID" } else { "INVALID" })
     "gtin14" =>
       println(if @lib.gtin14_valid(data) { "VALID" } else { "INVALID" })
     _ =>

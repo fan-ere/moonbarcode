@@ -16,11 +16,11 @@ test "dispatcher routes symbologies" {
 
 ///|
 test "not yet implemented symbologies return unsupported" {
-  match @moonbarcode.encode(@moonbarcode.Code39, "ABC") {
+  match @moonbarcode.encode(@moonbarcode.Code128, "ABC") {
     Err(@moonbarcode.Unsupported(_)) => assert_true(true)
     _ => assert_true(false)
   }
-  match @moonbarcode.encode(@moonbarcode.Code128, "ABC") {
+  match @moonbarcode.encode(@moonbarcode.Code93, "ABC") {
     Err(@moonbarcode.Unsupported(_)) => assert_true(true)
     _ => assert_true(false)
   }

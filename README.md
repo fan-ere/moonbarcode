@@ -12,7 +12,7 @@
 ## 支持的符号体系（Symbologies）
 
 - 零售：EAN-13、EAN-8、UPC-A
-- 物流与工业：Code 39（含 mod-43 校验）、Code 93（C/K 双校验 + Full ASCII）、Code 128（A/B/C 子集自动优化 + GS1-128）
+- 物流与工业：Code 39（含 mod-43 校验）、Code 93（C/K 双校验 + Full ASCII）、Code 128（A/B/C 子集自动优化 + GS1-128）、ITF-14
 - 图书与出版物校验：ISBN-10 / ISBN-13、ISSN、GTIN-14
 
 ## 渲染
@@ -32,14 +32,16 @@ CLI 用法：
 
 ```bash
 # 编码为 SVG 文件
-moon run cmd/main -- encode --type ean13 --data 6901234567892 --out out.svg
+moon run cmd/main --target native -- encode --type ean13 --data 6901234567892 --out out.svg
 
 # 终端 ASCII 预览
-moon run cmd/main -- encode --type ean13 --data 6901234567892 --format ascii
+moon run cmd/main --target native -- encode --type ean13 --data 6901234567892 --format ascii
 
 # 校验 ISBN-13
-moon run cmd/main -- validate --type isbn13 --data 978-0-306-40615-7
+moon run cmd/main --target native -- validate --type isbn13 --data 978-0-306-40615-7
 ```
+
+CLI 包仅支持 native 目标；本地运行 CLI 需要 C 编译器。核心库仍可在 native / wasm / wasm-gc / js 多后端编译和测试。
 
 库用法（开发中）：
 
@@ -54,7 +56,7 @@ let barcode = @moonbarcode.encode(@moonbarcode.EAN13, "6901234567892")
 - [x] Code 39（mod-43 校验）
 - [x] Code 93（C/K 校验 + Full ASCII）
 - [x] Code 128 / GS1-128
-- [ ] ITF-14（校验函数已提供，编码器规划中）
+- [x] ITF-14
 - [ ] UPC-E 与补充码（+2 / +5）
 
 ## 质量与复现
@@ -67,6 +69,10 @@ moon publish --dry-run
 ```
 
 CI 覆盖 native / wasm-gc / js 三个目标的检查、测试和构建，并包含 native CLI 冒烟测试。
+
+## 来源与合规
+
+项目为原创 MoonBit 实现，未复制第三方条码库源码。标准、编码表和测试样例来源说明见 [docs/SOURCES.md](docs/SOURCES.md)。
 
 ## 许可证
 

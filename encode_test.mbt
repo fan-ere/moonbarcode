@@ -15,9 +15,20 @@ test "dispatcher routes symbologies" {
 }
 
 ///|
-test "not yet implemented symbologies return unsupported" {
+test "ITF-14 appends and validates GTIN check digit" {
   match @moonbarcode.encode(@moonbarcode.ITF14, "1234567890123") {
-    Err(@moonbarcode.Unsupported(_)) => assert_true(true)
+    Ok(b) => {
+      assert_eq(b.data, "12345678901231")
+      assert_eq(b.module_count(), 135)
+    }
+    Err(_) => assert_true(false)
+  }
+  match @moonbarcode.encode(@moonbarcode.ITF14, "12345678901231") {
+    Ok(_) => assert_true(true)
+    Err(_) => assert_true(false)
+  }
+  match @moonbarcode.encode(@moonbarcode.ITF14, "12345678901230") {
+    Err(@moonbarcode.InvalidData(_)) => assert_true(true)
     _ => assert_true(false)
   }
 }
@@ -46,6 +57,10 @@ test "checksum returns check digit for payload" {
   }
   match @moonbarcode.checksum(@moonbarcode.UPCA, "03600029145") {
     Ok(c) => assert_eq(c, 2)
+    Err(_) => assert_true(false)
+  }
+  match @moonbarcode.checksum(@moonbarcode.ITF14, "1234567890123") {
+    Ok(c) => assert_eq(c, 1)
     Err(_) => assert_true(false)
   }
 }

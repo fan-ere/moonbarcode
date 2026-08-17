@@ -14,7 +14,7 @@ pub fn encode(
     Code39 => encode_code39(data)
     Code93 => encode_code93(data)
     Code128 => encode_code128(data)
-    ITF14 => Err(Unsupported("ITF-14 is planned but not implemented yet"))
+    ITF14 => encode_itf14(data)
   }
 }
 

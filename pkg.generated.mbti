@@ -26,6 +26,8 @@ pub fn encode_ean13(String) -> Result[Barcode, EncodeError]
 
 pub fn encode_ean8(String) -> Result[Barcode, EncodeError]
 
+pub fn encode_itf14(String) -> Result[Barcode, EncodeError]
+
 pub fn encode_upca(String) -> Result[Barcode, EncodeError]
 
 pub fn error_message(EncodeError) -> String

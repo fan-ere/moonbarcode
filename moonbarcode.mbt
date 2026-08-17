@@ -8,7 +8,7 @@
 ///
 /// 当前实现进度：
 /// - 零售条码：EAN-13、EAN-8、UPC-A（UPC-E 规划中）
-/// - 出版物校验：ISBN-10 / ISBN-13、ISSN、ISMN、GTIN-14
+/// - 出版物校验：ISBN-10 / ISBN-13、ISSN、GTIN-14
 /// - 物流与工业：Code 39、Code 93、Code 128（含 GS1-128）、ITF-14
 /// - 渲染：SVG、ASCII、ANSI
 /// - CLI：encode / validate / list / info

@@ -1,5 +1,6 @@
 # moonbarcode
 
+[![mooncakes.io](https://img.shields.io/badge/mooncakes.io-fan--ere%2Fmoonbarcode-blue)](https://mooncakes.io/packages/fan-ere/moonbarcode)
 [![CI](https://github.com/fan-ere/moonbarcode/actions/workflows/ci.yml/badge.svg)](https://github.com/fan-ere/moonbarcode/actions/workflows/ci.yml)
 
 纯 MoonBit 原生的一维条码（1D barcode）生成、校验与渲染工具库。
@@ -20,6 +21,14 @@
 - ASCII / ANSI：适合终端调试与测试
 
 ## 快速开始
+
+安装：
+
+```bash
+moon add fan-ere/moonbarcode
+```
+
+CLI 用法：
 
 ```bash
 # 编码为 SVG 文件
@@ -47,6 +56,17 @@ let barcode = @moonbarcode.encode(@moonbarcode.EAN13, "6901234567892")
 - [x] Code 128 / GS1-128
 - [ ] ITF-14（校验函数已提供，编码器规划中）
 - [ ] UPC-E 与补充码（+2 / +5）
+
+## 质量与复现
+
+```bash
+moon check --deny-warn
+moon test --deny-warn
+moon fmt --check .
+moon publish --dry-run
+```
+
+CI 覆盖 native / wasm-gc / js 三个目标的检查、测试和构建，并包含 native CLI 冒烟测试。
 
 ## 许可证
 

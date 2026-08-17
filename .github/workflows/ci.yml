@@ -28,9 +28,9 @@ jobs:
       - name: Format
         run: moon fmt --check .
       - name: Check
-        run: moon check --target ${{ matrix.target }}
+        run: moon check --deny-warn --target ${{ matrix.target }}
       - name: Test
-        run: moon test --target ${{ matrix.target }}
+        run: moon test --deny-warn --target ${{ matrix.target }}
       - name: Build library
         run: moon build --target ${{ matrix.target }}
       - name: CLI smoke test (native)

@@ -43,6 +43,14 @@ moon run cmd/main --target native -- validate --type isbn13 --data 978-0-306-406
 
 CLI 包仅支持 native 目标；本地运行 CLI 需要 C 编译器。核心库仍可在 native / wasm / wasm-gc / js 多后端编译和测试。
 
+最小可运行示例：
+
+```bash
+moon run examples/quickstart --target wasm-gc
+```
+
+这个示例不依赖 C 编译器，适合先快速验证库的核心 API。
+
 库用法（开发中）：
 
 ```moonbit

@@ -35,7 +35,7 @@
 - `moon fmt --check .`：通过。
 - `moon info`：通过且没有留下 git diff。
 - `moon run examples/quickstart --target wasm-gc`：通过，可直接验证核心 API。
-- `moon publish`：`fan-ere/moonbarcode@0.1.3` 已发布成功；当前本地版本为 `0.2.0`，待发布。
+- `moon publish`：`fan-ere/moonbarcode@0.2.0` 已发布成功。
 - `git remote show origin`：远程默认分支为 `main`，本地 `main` 已跟踪 `origin/main`。
 - `git rev-list --count HEAD`：当前历史超过 10 个提交，均在 2026-04-29 之后。
 

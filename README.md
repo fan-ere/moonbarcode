@@ -65,6 +65,9 @@ let barcode = @moonbarcode.encode(@moonbarcode.EAN13, "6901234567892")
 - [x] Code 93（C/K 校验 + Full ASCII）
 - [x] Code 128 / GS1-128
 - [x] ITF-14
+- [x] EAN/UPC、Code 39、ITF-14 模块反解与校验
+- [x] GS1 AI 解析、GTIN/SSCC/GLN 与 GS1 日期工具
+- [x] 模块序列转换、静区处理与结构分析
 - [ ] UPC-E 与补充码（+2 / +5）
 
 ## 质量与复现
@@ -85,3 +88,7 @@ CI 覆盖 native / wasm-gc / js 三个目标的检查、测试和构建，并包
 ## 许可证
 
 Apache-2.0
+
+## 参赛与维护
+
+OSC 2026 申请人与仓库维护者关系见 [docs/PARTICIPATION.md](docs/PARTICIPATION.md)。

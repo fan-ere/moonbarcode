@@ -9,13 +9,13 @@
 ## 提交前需要处理的问题
 
 - Gitlink 仓库尚未在本地 remote 中体现。提交申报前需要导入 Gitlink，并确认 GitHub 与 Gitlink 默认分支均指向包含主要代码、README、LICENSE、CI 的分支。
-- 项目核心 MoonBit 源码仍低于章程 4-10k 有效 MoonBit 行数参考范围，建议在申报书中强调项目边界清晰、条码标准覆盖、CLI/渲染/测试完整性。LOC 不是硬性门槛，但终审展示时需要突出真实可用性。
+- 排除示例后，项目有效 MoonBit 源码与测试已超过 4,000 行，达到章程项目规模参考下限。
 - CLI 只支持 native 目标；本地运行 CLI 需要 C 编译器。README 已写明 `--target native` 和环境要求，GitHub Actions 已覆盖 native CLI 冒烟测试。
 
 ## 需要进一步确认的问题
 
 - Gitlink 仓库链接是什么，是否已经从 GitHub 完整同步。
-- 申报人 GitHub/mooncakes 账号是否就是 `fan-ere`，与 `moon.mod` 的包命名空间一致。
+- 申请人樊贝宁与 GitHub/mooncakes 账号 `fan-ere` 的关系已记录在 `docs/PARTICIPATION.md`。
 - 是否已经把 GitHub 当前默认分支同步到 Gitlink。
 - 申报书中是否同步说明项目为原创实现，并引用 `docs/SOURCES.md` 的来源合规说明。
 
@@ -29,13 +29,13 @@
 
 - `moon.mod`：包名为 `fan-ere/moonbarcode`，许可证为 `Apache-2.0`，仓库为 `https://github.com/fan-ere/moonbarcode`。
 - `moon check`：通过。
-- `moon test`：46 个测试全部通过。
+- `moon test`：82 个测试全部通过。
 - `moon check --deny-warn`：通过。
-- `moon test --deny-warn`：46 个测试全部通过。
+- `moon test --deny-warn`：82 个测试全部通过。
 - `moon fmt --check .`：通过。
 - `moon info`：通过且没有留下 git diff。
 - `moon run examples/quickstart --target wasm-gc`：通过，可直接验证核心 API。
-- `moon publish`：`fan-ere/moonbarcode@0.1.2` 已发布成功；当前本地版本已提升为 `0.1.3`，待重新发布。
+- `moon publish`：`fan-ere/moonbarcode@0.1.3` 已发布成功；当前本地版本为 `0.2.0`，待发布。
 - `git remote show origin`：远程默认分支为 `main`，本地 `main` 已跟踪 `origin/main`。
 - `git rev-list --count HEAD`：当前历史超过 10 个提交，均在 2026-04-29 之后。
 

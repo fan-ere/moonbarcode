@@ -6,6 +6,10 @@ import {
 }
 
 // Values
+pub fn add_quiet_zone(Array[Bool], Int) -> Array[Bool]
+
+pub fn analyze_modules(Array[Bool]) -> ModuleStats
+
 pub fn checksum(Symbology, String) -> Result[Int, EncodeError]
 
 pub fn code128_checksum(String, gs1? : Bool) -> Result[Int, String]
@@ -13,6 +17,24 @@ pub fn code128_checksum(String, gs1? : Bool) -> Result[Int, String]
 pub fn code39_checksum(String) -> Result[Int, String]
 
 pub fn code93_checksums(String, full_ascii? : Bool) -> Result[(Int, Int), String]
+
+pub fn complete_gln(String) -> Result[String, String]
+
+pub fn complete_gtin(String) -> Result[String, String]
+
+pub fn complete_sscc(String, String, String) -> Result[String, String]
+
+pub fn decode_code39(Array[Bool], verify_checksum? : Bool) -> Result[String, DecodeError]
+
+pub fn decode_ean13(Array[Bool]) -> Result[String, DecodeError]
+
+pub fn decode_ean8(Array[Bool]) -> Result[String, DecodeError]
+
+pub fn decode_error_message(DecodeError) -> String
+
+pub fn decode_itf14(Array[Bool]) -> Result[String, DecodeError]
+
+pub fn decode_upca(Array[Bool]) -> Result[String, DecodeError]
 
 pub fn encode(Symbology, String) -> Result[Barcode, EncodeError]
 
@@ -32,9 +54,23 @@ pub fn encode_upca(String) -> Result[Barcode, EncodeError]
 
 pub fn error_message(EncodeError) -> String
 
+pub fn format_gs1(Array[Gs1Element]) -> String
+
+pub fn format_gs1_date(Gs1Date) -> Result[String, String]
+
+pub fn gs1_128_payload(Array[Gs1Element]) -> Result[String, String]
+
 pub fn gtin14_checksum(String) -> Result[Int, String]
 
+pub fn gtin14_indicator(String) -> Result[Int, String]
+
 pub fn gtin14_valid(String) -> Bool
+
+pub fn hamming_distance(Array[Bool], Array[Bool]) -> Int?
+
+pub fn inspect_gtin(String) -> Result[GtinInfo, String]
+
+pub fn invert_modules(Array[Bool]) -> Array[Bool]
 
 pub fn is_all_digits(String) -> Bool
 
@@ -50,13 +86,29 @@ pub fn mod10_check(String, Int, Int) -> Result[Int, String]
 
 pub fn mod10_verify(String, Int, Int) -> Bool
 
+pub fn module_runs(Array[Bool]) -> Array[ModuleRun]
+
+pub fn modules_from_binary(String) -> Result[Array[Bool], String]
+
+pub fn modules_to_binary(Array[Bool]) -> String
+
+pub fn normalize_gtin14(String) -> Result[String, String]
+
+pub fn parse_gs1(String) -> Result[Array[Gs1Element], String]
+
+pub fn parse_gs1_date(String) -> Result[Gs1Date, String]
+
 pub fn render_ansi(Barcode, BarcodeOptions) -> String
 
 pub fn render_ascii(Barcode, BarcodeOptions) -> String
 
 pub fn render_svg(Barcode, BarcodeOptions) -> String
 
+pub fn reverse_modules(Array[Bool]) -> Array[Bool]
+
 pub fn strip_separators(String) -> String
+
+pub fn trim_quiet_zone(Array[Bool]) -> Array[Bool]
 
 pub fn validate(Symbology, String) -> Result[Unit, EncodeError]
 
@@ -65,6 +117,12 @@ pub fn validate_code128(String, gs1? : Bool) -> Result[Unit, EncodeError]
 pub fn validate_code39(String) -> Result[Unit, EncodeError]
 
 pub fn validate_code93(String, full_ascii? : Bool) -> Result[Unit, EncodeError]
+
+pub fn validate_gln(String) -> Bool
+
+pub fn validate_gs1_date(String) -> Bool
+
+pub fn validate_sscc(String) -> Bool
 
 // Errors
 
@@ -87,9 +145,56 @@ pub struct BarcodeOptions {
 pub fn BarcodeOptions::default() -> Self
 pub fn BarcodeOptions::new(module_width? : Int, height? : Int, quiet_zone? : Int, show_text? : Bool, text_margin? : Int) -> Self
 
+pub(all) enum DecodeError {
+  InvalidModules(String)
+  ChecksumMismatch(String)
+} derive(Eq, @debug.Debug)
+
 pub(all) enum EncodeError {
   InvalidData(String)
   Unsupported(String)
+} derive(Eq, @debug.Debug)
+
+pub struct Gs1Date {
+  year : Int
+  month : Int
+  day : Int
+} derive(Eq, @debug.Debug)
+
+pub struct Gs1Element {
+  ai : String
+  data : String
+  title : String
+  fixed_length : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct GtinInfo {
+  kind : GtinKind
+  value : String
+  canonical : String
+  payload : String
+  check_digit : Int
+} derive(Eq, @debug.Debug)
+
+pub(all) enum GtinKind {
+  GTIN8
+  GTIN12
+  GTIN13
+  GTIN14
+} derive(Eq, @debug.Debug)
+
+pub struct ModuleRun {
+  dark : Bool
+  width : Int
+} derive(Eq, @debug.Debug)
+
+pub struct ModuleStats {
+  module_count : Int
+  dark_count : Int
+  light_count : Int
+  transitions : Int
+  narrowest_run : Int
+  widest_run : Int
 } derive(Eq, @debug.Debug)
 
 pub(all) enum Symbology {
